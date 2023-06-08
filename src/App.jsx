@@ -1,13 +1,17 @@
 // import { useState, useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+import './style/app.sass';
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
 
 function App() {
 
   return (
-    <div className='App'>
-      <h1>Hello World</h1>
-      <FontAwesomeIcon icon={faEnvelope} />
+    <div className="App">
+      <Navbar />
+      <section>
+        <Form />
+      </section>
     </div>
   )
 }

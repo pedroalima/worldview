@@ -1,0 +1,22 @@
+@use '../variables'
+
+.nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 1.8rem 1rem
+    background: variables.$elements-bg
+    box-shadow: variables.$box-shadow
+
+    &-title
+        font-size: variables.$font-secondary-size
+
+    &-button
+        display: flex
+        align-items: center
+        gap: 0.5rem
+        font-size: variables.$font-primary-size
+
+        &-theme
+            font-size: variables.$font-primary-size
+            font-weight: 600
