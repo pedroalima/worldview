@@ -8,8 +8,14 @@
     background: variables.$elements-bg
     box-shadow: variables.$box-shadow
 
+    @media screen and ( min-width: 1200px )
+        padding: 1.8rem 5rem
+
     &-title
         font-size: variables.$font-secondary-size
+
+        @media screen and ( min-width: 1200px )
+            font-size: 22px
 
     &-button
         display: flex
@@ -20,3 +26,6 @@
         &-theme
             font-size: variables.$font-primary-size
             font-weight: 600
+
+            @media screen and ( min-width: 1200px )
+                font-size: 16px
