@@ -19,7 +19,7 @@
         gap: 1.5rem
         background: variables.$elements-bg
         border: none
-        padding: 0.5rem 2rem
+        padding: 0.5rem 1rem
         border-radius: 5px
         width: 100%
         box-shadow: variables.$box-shadow
@@ -36,44 +36,11 @@
             width: 40%
 
     &-select
-        position: relative
-        pointer-events: all
+        width: 50%
+        padding: 1rem
+        border: none
+        border-radius: 5px
+        box-shadow: variables.$box-shadow
 
         @media screen and ( min-width: 1200px )
-            width: 18%
-
-        &-title
-            display: flex
-            align-items: center
-            justify-content: space-between
-            background: variables.$elements-bg
-            border: none
-            padding: 1rem
-            border-radius: 5px
-            width: 55%
-            box-shadow: variables.$box-shadow
-
-            span
-                font-size: variables.$font-primary-size
-                font-weight: 600
-
-            // svg
-            //     rotate: 180deg
-
-            @media screen and ( min-width: 1200px )
-                width: 100%
-
-        &-box
-            position: absolute
-            top: 110%
-            background: variables.$elements-bg
-            box-shadow: variables.$box-shadow
-            border-radius: 5px
-            padding: 1rem
-            width: 55%
-
-            input
-                // display: none
-
-            @media screen and ( min-width: 1200px )
-                width: 100%
+            width: 15%
