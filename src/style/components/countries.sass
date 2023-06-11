@@ -1,9 +1,44 @@
 @use '../variables'
 
 .countries
-    width: 300px
     display: flex
     flex-direction: column
+    align-items: center
+    gap: 2.5rem
+
+    @media screen and ( min-width: 1200px )
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: space-between
+        align-items: stretch
+        padding: 0 5rem 5rem
 
     img
         width: 100%
+
+    &-container
+        width: 300px
+        background: variables.$elements-bg
+        border-radius: 8px
+        overflow: hidden
+        box-shadow: variables.$box-shadow
+
+        @media screen and ( min-width: 1200px )
+            width: 260px
+
+        &-content
+            padding: 1.5rem
+
+            h1
+                padding-bottom: 1rem
+
+            p
+                font-weight: 600
+                padding-bottom: 0.3rem
+
+                span
+                    font-weight: 300
+
+            img
+                width: 50px
