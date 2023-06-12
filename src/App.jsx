@@ -5,6 +5,10 @@ import Countries from './components/Countries';
 
 function App() {
 
+  // function countryFilter(country){
+  //   setCountries(country)
+  // }
+
   return (
     <div className="App">
       <Navbar />

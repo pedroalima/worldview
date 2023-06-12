@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import numeral from 'numeral';
+import numberFormat from './utilities';
 import '../style/components/countries.sass';
-
-const url = "https://restcountries.com/v3.1";
+import { url } from './utilities';
 
 export default function Countries() {
 
@@ -28,11 +27,6 @@ export default function Countries() {
         getDataCountries()
     }, []);
 
-    function numberFormat (number) {
-        let result = numeral(number).format(0,0);
-        return result;
-    }
-
     return (
         <section className='countries'>
             {
@@ -41,9 +35,11 @@ export default function Countries() {
 
                     return (
                         <div className='countries-container' key={cca2}>
-                            <img src={flags.svg} alt={flags.alt} />
+                            <div className='countries-container-image'>
+                                <img src={flags.png} alt={flags.alt} />
+                            </div>
                             <div className='countries-container-content'>
-                                <img src={coatOfArms.svg} alt="" />
+                                <img src={coatOfArms.png} alt="" />
                                 <h1>{name.common}</h1>
                                 <p>Population: <span>{numberFormat(population)}</span></p>
                                 <p>Region: <span>{region}</span></p>
