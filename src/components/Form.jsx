@@ -1,33 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../style/components/form.sass'
 import { BiSearch } from "react-icons/bi";
-import { url } from './utilities';
+import PropTypes from 'prop-types';
 
-export default function Form(){
+export default function Form(props){
     const [ country, setCountry ] = useState('')
-
-    useEffect(() => {
-        const getCountry = async () => {
-            const endpoint = `/name/${country}`
-            const urlToFetch = `${url}${endpoint}`
-    
-            try {
-                const response = await fetch(urlToFetch)
-    
-                if (response.ok) {
-                    const jsonResponse = await response.json()
-                    console.log(jsonResponse)
-                }
-    
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        if (country.length) {
-            getCountry()
-        }
-    }, [country])
 
     const handleTextChange = ({ target }) => {
         setCountry(target.value)
@@ -36,11 +13,13 @@ export default function Form(){
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        props.onSearch(country)
+        setCountry('')
     }
 
     return (
         <section className='form'>
-            <form onSubmit={handleSubmit}  className='form-input'>
+            <form onSubmit={handleSubmit} className='form-input'>
                 <BiSearch />
                 <input  
                     placeholder='Search for a country...' 
@@ -62,3 +41,7 @@ export default function Form(){
         </section>
     )
 }
+
+Form.propTypes = {
+    onSearch: PropTypes.func.isRequired
+  };
