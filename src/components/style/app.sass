@@ -1,4 +1,5 @@
 @use 'variables'
+@import './mixins'
 
 .countries
     display: flex
@@ -24,6 +25,10 @@
         overflow: hidden
         box-shadow: variables.$box-shadow
 
+        @include dark
+            background: variables.$elements-dark-bg
+            box-shadow: variables.$box-shadow-dark
+
         @media screen and ( min-width: 720px )
             width: 260px
 
@@ -32,6 +37,9 @@
                 width: 100%
                 height: 160px
                 box-shadow: variables.$box-shadow
+
+                @include dark
+                    box-shadow: none
 
                 @media screen and ( min-width: 720px )
                     height: 150px

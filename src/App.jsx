@@ -1,7 +1,8 @@
-import './style/app.sass';
+import './components/style/app.sass';
 
-import Navbar from "./components/Navbar";
-import Form from "./components/Form";
+import Navbar from "./components/navbar/Navbar";
+import Search from "./components/form/Search";
+import Filter from "./components/form/Filter";
 
 import { useState, useEffect } from 'react';
 import numberFormat, { url } from './components/utilities';
@@ -11,19 +12,19 @@ function App() {
   const [ countries, setCountries ] = useState([]);
 
   const getDataCountries = async () => {
-      try {
-          const endpoint = "/all";
-          const response = await fetch(url + endpoint);
+    try {
+      const endpoint = "/all";
+      const response = await fetch(`${url}${endpoint}`);
 
-          if(response.ok) {
-              const countries = await response.json();
-
-              setCountries(countries)
-          }
-
-      } catch(error){ 
-          console.log(error)
-      }
+      if(response.ok) {
+        const countries = await response.json();
+        setCountries(countries)
+      } else {
+        throw Error("something is wrong")
+      } 
+    } catch(e){ 
+      console.log(e.message)
+    }
   };
 
   useEffect(() => {
@@ -36,19 +37,45 @@ function App() {
       const urlToFetch = `${url}${endpoint}`
   
       try {
-          const response = await fetch(urlToFetch)
+        const response = await fetch(urlToFetch)
   
-          if (response.ok) {
-              const jsonResponse = await response.json()
-              setCountries(jsonResponse)
-          }
-  
-      } catch (error) {
-          console.log(error)
+        if (response.ok) {
+          const jsonResponse = await response.json()
+          setCountries(jsonResponse)
+        } else {
+          throw Error("something is wrong")
+        } 
+      } catch (e) {
+          console.log(e.message)
       }
     } else {
       getDataCountries()
     }
+  }
+
+  const filterRegions = async (region) => {
+    const endpoint = `/region/${region}`
+    const urlToFetch = `${url}${endpoint}`
+    
+    try {
+      const response = await fetch(urlToFetch)
+
+      if (response.ok) {
+        const jsonResponse = await response.json()
+        setCountries(jsonResponse)
+
+        throw Error("complete API request")
+      }
+
+    } catch(e) {
+      console.log(e)
+    }
+
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    filterRegions()
   }
 
   return (
@@ -57,7 +84,13 @@ function App() {
         <Navbar />
       </header>
       <main>
-        <Form onSearch={getCountryByName}/>
+        <section className='form'>
+          <Search onSearch={getCountryByName} />
+          <form onChange={handleSubmit}>
+            <Filter onFilter={filterRegions} onFilterOff={getDataCountries} />
+          </form>
+          
+        </section>
         <section className='countries'>
           {
             countries.map((country) => {

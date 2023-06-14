@@ -1,4 +1,5 @@
 @use 'variables'
+@import './mixins'
 
 *
     margin: 0
@@ -6,8 +7,13 @@
     box-sizing: border-box
     font-family: variables.$font-stack
 
+    @include dark
+        color: variables.$font-color-dark
 body
     background: variables.$body-light-bg
+
+    @include dark
+        background: variables.$body-dark-bg
 
     button
         border: none
